@@ -16,7 +16,7 @@
             </separator>
          </menu>
          <action
-               label="New Action"
+               label="${menu.label}"
                class="monkeycoder.popup.actions.NewAction"
                menubarPath="monkey-coder.menu1/group1"
                enablesFor="1"
