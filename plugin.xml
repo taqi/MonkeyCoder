@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            objectClass="org.eclipse.core.resources.IProject"
+            id="monkey-coder.contribution1">
+         <menu
+               label="New Submenu"
+               path="additions"
+               id="monkey-coder.menu1">
+            <separator
+                  name="group1">
+            </separator>
+         </menu>
+         <action
+               label="New Action"
+               class="monkeycoder.popup.actions.NewAction"
+               menubarPath="monkey-coder.menu1/group1"
+               enablesFor="1"
+               id="monkey-coder.newAction">
+         </action>
+      </objectContribution>
+   </extension>
+
+</plugin>
