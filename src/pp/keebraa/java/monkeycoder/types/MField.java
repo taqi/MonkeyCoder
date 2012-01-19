@@ -1,7 +1,9 @@
 package pp.keebraa.java.monkeycoder.types;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class MField implements MCode
 {
@@ -141,5 +143,13 @@ public class MField implements MCode
 	else if (!type.equals(other.type))
 	   return false;
 	return true;
+   }
+
+   @Override
+   public Set<MType> getUsedTypes()
+   {
+	Set<MType> types = new HashSet<MType>();
+	types.add(type);
+	return types;
    }
 }

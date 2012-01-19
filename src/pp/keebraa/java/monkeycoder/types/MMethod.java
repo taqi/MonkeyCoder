@@ -1,7 +1,9 @@
 package pp.keebraa.java.monkeycoder.types;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import pp.keebraa.java.monkeycoder.types.def.DefTypes;
 
@@ -145,6 +147,18 @@ public class MMethod implements MCode
    {
 	MethodCodeGenerator generator = new MethodCodeGenerator(this, codeBuilder);
 	generator.buildCode();
+   }
+   
+   @Override
+   public Set<MType> getUsedTypes()
+   {
+	Set<MType> types = new HashSet<MType>();
+	types.add(returnedType);
+	for(MTypeValue arg : arguments)
+	{
+	   types.add(arg.getType());
+	}
+      return types;
    }
    
    @Override

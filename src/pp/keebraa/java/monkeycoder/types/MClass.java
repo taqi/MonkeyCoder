@@ -138,6 +138,30 @@ public class MClass extends MType implements MCode
    }
 
    @Override
+   public Set<MType> getUsedTypes()
+   {
+	Set<MType> types = new HashSet<MType>();
+	types.add(parent);
+	for(MType type : interfaces)
+	{
+	   types.add(type);
+	}
+	for(MType annotation : annotations)
+	{
+	   types.add(annotation);
+	}
+	for(MField field : fields)
+	{
+	   types.add(field.getType());
+	}
+	for(MMethod method : methods)
+	{
+	   types.addAll(method.getUsedTypes());
+	}
+	return types;
+   }
+
+   @Override
    public int hashCode()
    {
 	final int prime = 31;

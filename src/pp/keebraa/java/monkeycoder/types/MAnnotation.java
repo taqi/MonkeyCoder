@@ -1,8 +1,10 @@
 package pp.keebraa.java.monkeycoder.types;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 public class MAnnotation extends MType implements MCode
 {
@@ -37,6 +39,19 @@ public class MAnnotation extends MType implements MCode
 	   codeBuilder.append(")");
 	}
 	codeBuilder.append("\n");
+   }
+   
+   @Override
+   public Set<MType> getUsedTypes()
+   {
+	Set<MType> types = new HashSet<MType>();
+	for(String key : values.keySet())
+	{
+	   MType type = values.get(key).getType();
+	   types.add(type);
+	}
+	types.add(this);
+	return types;
    }
 
    @Override
