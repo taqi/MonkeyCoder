@@ -1,11 +1,18 @@
-package pp.keebraa.java.monkeycoder.types;
+package pp.keebraa.java.monkeycoder.coremodel.types;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-public class MField implements MCode
+import pp.keebraa.java.monkeycoder.coremodel.snippets.CodeSnippet;
+import pp.keebraa.java.monkeycoder.coremodel.snippets.FieldCodeSnippet;
+
+/**
+ * Represents one class field. (e.g. public String name;)
+ * 
+ * @author taqi
+ * 
+ */
+public class MField implements MSyntax
 {
    private MModificator modificator;
 
@@ -13,17 +20,18 @@ public class MField implements MCode
 
    private boolean isStatic;
 
-   private MType type;
+   private MVariable variable;
 
    private List<MAnnotation> annotations;
-   
-   public MField(MModificator modificator, String name, boolean isStatic, MType type, List<MAnnotation> annotations)
+
+   public MField(MModificator modificator, String name, boolean isStatic, MVariable variable,
+	   List<MAnnotation> annotations)
    {
 	super();
 	this.modificator = modificator;
 	this.name = name;
 	this.isStatic = isStatic;
-	this.type = type;
+	this.variable = variable;
 	if (annotations == null)
 	{
 	   annotations = new ArrayList<MAnnotation>();
@@ -61,14 +69,14 @@ public class MField implements MCode
 	this.isStatic = isStatic;
    }
 
-   public MType getType()
+   public MVariable getVariable()
    {
-	return type;
+	return variable;
    }
 
-   public void setType(MType type)
+   public void setVariable(MVariable variable)
    {
-	this.type = type;
+	this.variable = variable;
    }
 
    public void setAnnotations(List<MAnnotation> annotations)
@@ -80,26 +88,16 @@ public class MField implements MCode
    {
 	this.annotations.add(annotation);
    }
-   
+
    public List<MAnnotation> getAnnotations()
    {
 	return annotations;
    }
 
    @Override
-   public void generateCode(StringBuilder codeBuilder)
+   public CodeSnippet getCodeSnippet()
    {
-	for(MAnnotation annotation : annotations)
-	{
-	   annotation.generateCode(codeBuilder);
-	}
-	codeBuilder.append(modificator.getValue());
-	if(isStatic)
-	   codeBuilder.append("static"+" ");
-	codeBuilder.append(type.getClassName()+" ");
-	codeBuilder.append(name);
-	codeBuilder.append(";\n");
-	
+	return new FieldCodeSnippet(this);
    }
    
    @Override
@@ -110,7 +108,7 @@ public class MField implements MCode
 	result = prime * result + (isStatic ? 1231 : 1237);
 	result = prime * result + ((modificator == null) ? 0 : modificator.hashCode());
 	result = prime * result + ((name == null) ? 0 : name.hashCode());
-	result = prime * result + ((type == null) ? 0 : type.hashCode());
+	result = prime * result + ((variable == null) ? 0 : variable.hashCode());
 	return result;
    }
 
@@ -135,21 +133,13 @@ public class MField implements MCode
 	}
 	else if (!name.equals(other.name))
 	   return false;
-	if (type == null)
+	if (variable == null)
 	{
-	   if (other.type != null)
+	   if (other.variable != null)
 		return false;
 	}
-	else if (!type.equals(other.type))
+	else if (!variable.equals(other.variable))
 	   return false;
 	return true;
-   }
-
-   @Override
-   public Set<MType> getUsedTypes()
-   {
-	Set<MType> types = new HashSet<MType>();
-	types.add(type);
-	return types;
    }
 }

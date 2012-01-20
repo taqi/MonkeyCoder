@@ -1,11 +1,13 @@
-package pp.keebraa.java.monkeycoder.types;
+package pp.keebraa.java.monkeycoder.coremodel.types;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class MClass extends MType implements MCode
+import pp.keebraa.java.monkeycoder.coremodel.snippets.CodeSnippet;
+
+public class MClass extends MType implements MSyntax
 {
    private MModificator modificator;
 
@@ -120,44 +122,13 @@ public class MClass extends MType implements MCode
 	}
 	for(MMethod method : methods)
 	{
-	   for(MTypeValue value : method.getArguments())
+	   for(MVariable value : method.getArguments())
 	   {
 		types.add(value.getType());
 	   }
 	}
 	if(parent != null)
 	   types.add(parent);
-	return types;
-   }
-
-   @Override
-   public void generateCode(StringBuilder codeBuilder)
-   {
-	ClassCodeGenerator generator = new ClassCodeGenerator(codeBuilder, this);
-	generator.buildCode();
-   }
-
-   @Override
-   public Set<MType> getUsedTypes()
-   {
-	Set<MType> types = new HashSet<MType>();
-	types.add(parent);
-	for(MType type : interfaces)
-	{
-	   types.add(type);
-	}
-	for(MType annotation : annotations)
-	{
-	   types.add(annotation);
-	}
-	for(MField field : fields)
-	{
-	   types.add(field.getType());
-	}
-	for(MMethod method : methods)
-	{
-	   types.addAll(method.getUsedTypes());
-	}
 	return types;
    }
 
@@ -215,5 +186,11 @@ public class MClass extends MType implements MCode
 	else if (!parent.equals(other.parent))
 	   return false;
 	return true;
+   }
+
+   @Override
+   public CodeSnippet getCodeSnippet()
+   {
+	return null;
    }
 }

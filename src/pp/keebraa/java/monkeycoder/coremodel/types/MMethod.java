@@ -1,9 +1,7 @@
-package pp.keebraa.java.monkeycoder.types;
+package pp.keebraa.java.monkeycoder.coremodel.types;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import pp.keebraa.java.monkeycoder.types.def.DefTypes;
 
@@ -19,7 +17,7 @@ public class MMethod implements MCode
    
    private boolean isStatic;
    
-   private List<MTypeValue> arguments;
+   private List<MVariable> arguments;
    
    private List<MAnnotation> annotations;
 
@@ -34,7 +32,7 @@ public class MMethod implements MCode
 	this.returnedType = DefTypes.VOID;
 	this.isStatic = false;
 	this.code = "";
-	this.arguments = new ArrayList<MTypeValue>();
+	this.arguments = new ArrayList<MVariable>();
 	this.annotations = new ArrayList<MAnnotation>();
    }
 
@@ -103,17 +101,17 @@ public class MMethod implements MCode
       this.isStatic = isStatic;
    }
 
-   public List<MTypeValue> getArguments()
+   public List<MVariable> getArguments()
    {
       return arguments;
    }
 
-   public void setArguments(List<MTypeValue> arguments)
+   public void setArguments(List<MVariable> arguments)
    {
       this.arguments = arguments;
    }
    
-   public void addArgument(MTypeValue argument)
+   public void addArgument(MVariable argument)
    {
 	arguments.add(argument);
    }
@@ -142,25 +140,6 @@ public class MMethod implements MCode
 	return result;
    }
 
-   @Override
-   public void generateCode(StringBuilder codeBuilder)
-   {
-	MethodCodeGenerator generator = new MethodCodeGenerator(this, codeBuilder);
-	generator.buildCode();
-   }
-   
-   @Override
-   public Set<MType> getUsedTypes()
-   {
-	Set<MType> types = new HashSet<MType>();
-	types.add(returnedType);
-	for(MTypeValue arg : arguments)
-	{
-	   types.add(arg.getType());
-	}
-      return types;
-   }
-   
    @Override
    public boolean equals(Object obj)
    {

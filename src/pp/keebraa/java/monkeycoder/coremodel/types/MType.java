@@ -1,4 +1,4 @@
-package pp.keebraa.java.monkeycoder.types;
+package pp.keebraa.java.monkeycoder.coremodel.types;
 
 /**
  * Basic class for types, such as String, etc.

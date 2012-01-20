@@ -1,6 +1,6 @@
 package pp.keebraa.java.monkeycoder.types.def;
 
-import pp.keebraa.java.monkeycoder.types.MType;
+import pp.keebraa.java.monkeycoder.coremodel.types.MType;
 
 public class MVoid extends MType
 {
