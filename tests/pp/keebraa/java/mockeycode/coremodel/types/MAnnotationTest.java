@@ -19,12 +19,7 @@ public class MAnnotationTest
    public void generateCodeSimpleAnnotation()
    {
 	String expectedCode = "@Column\n";
-//	String name = "Column";
-//	String pkg = "org.example.columns";
-	
-//	MAnnotation annotation = new MAnnotation(name, pkg, null);
 	StringBuilder codeBuilder = new StringBuilder();
-//	annotation.generateCodeSnippet(codeBuilder);
 	String code = codeBuilder.toString();
 	assertNotNull(code);
 	assertEquals(expectedCode, code);
@@ -44,9 +39,7 @@ public class MAnnotationTest
 	MVariable pkgTypeValue = new MVariable(DefTypes.STRING, "\""+pkg+"\"");
 	values.put("package", pkgTypeValue);
 	
-//	MAnnotation annotation = new MAnnotation(name, pkg, values);
 	StringBuilder codeBuilder = new StringBuilder();
-//	annotation.generateCodeSnippet(codeBuilder);
 	String code = codeBuilder.toString();
 	assertNotNull(code);
 	assertEquals(expectedCode, code);

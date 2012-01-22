@@ -23,7 +23,6 @@ public class AnnotationCodeSnippet implements ListCodeSnippet
    
    private void generateValues(StringBuilder builder)
    {
-//	if(annotation.get)
    }
    
    @Override
@@ -32,6 +31,7 @@ public class AnnotationCodeSnippet implements ListCodeSnippet
 	StringBuilder builder = new StringBuilder();
 	generateBasicClause(builder);
 	generateValues(builder);
+	builder.append("\n");
 	return builder.toString();
    }
 
