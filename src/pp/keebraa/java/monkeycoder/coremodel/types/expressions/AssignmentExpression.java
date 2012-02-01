@@ -1,5 +1,6 @@
 package pp.keebraa.java.monkeycoder.coremodel.types.expressions;
 
+import pp.keebraa.java.monkeycoder.coremodel.snippets.CodeSnippet;
 import pp.keebraa.java.monkeycoder.coremodel.snippets.expressions.AssignmentExpressionSnippet;
 import pp.keebraa.java.monkeycoder.coremodel.snippets.expressions.ExpressionSnippet;
 import pp.keebraa.java.monkeycoder.coremodel.types.MVariable;
@@ -15,7 +16,7 @@ public class AssignmentExpression extends ExpressionSyntax
 	return new AssignmentExpressionSnippet(this);
    }
 
-   public ExpressionSnippet getLeftPart()
+   public CodeSnippet getLeftPart()
    {
 	return leftPart.getCodeSnippet();
    }

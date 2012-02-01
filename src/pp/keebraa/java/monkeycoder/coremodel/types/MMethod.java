@@ -3,9 +3,11 @@ package pp.keebraa.java.monkeycoder.coremodel.types;
 import java.util.ArrayList;
 import java.util.List;
 
+import pp.keebraa.java.monkeycoder.coremodel.snippets.CodeSnippet;
+import pp.keebraa.java.monkeycoder.coremodel.snippets.MethodCodeSnippet;
 import pp.keebraa.java.monkeycoder.types.def.DefTypes;
 
-public class MMethod implements MCode
+public class MMethod implements MSyntaxConstruction
 {
    private MType clazz;
    
@@ -20,9 +22,9 @@ public class MMethod implements MCode
    private List<MVariable> arguments;
    
    private List<MAnnotation> annotations;
-
-   private String code;
    
+   private List<MSyntax> code;
+
    public MMethod(MType clazz, String name)
    {
 	super();
@@ -31,11 +33,35 @@ public class MMethod implements MCode
 	this.modificator = MModificator.PUBLIC;
 	this.returnedType = DefTypes.VOID;
 	this.isStatic = false;
-	this.code = "";
 	this.arguments = new ArrayList<MVariable>();
 	this.annotations = new ArrayList<MAnnotation>();
+	this.code = new ArrayList<MSyntax>();
    }
 
+   @Override
+   public CodeSnippet getCodeSnippet()
+   {
+	CodeSnippet snippet = new MethodCodeSnippet(this);
+	for(MSyntax syntax : code)
+	{
+	   snippet.addCodeSnippet(syntax.getCodeSnippet());
+	}
+	return snippet;
+   }
+   
+
+   @Override
+   public void addSyntax(MSyntax syntax)
+   {
+	code.add(syntax);
+   }
+
+   @Override
+   public List<MSyntax> getSyntax()
+   {
+	return code;
+   }
+   
    public List<MAnnotation> getAnnotations()
    {
       return annotations;
@@ -116,16 +142,6 @@ public class MMethod implements MCode
 	arguments.add(argument);
    }
    
-   public String getCode()
-   {
-      return code;
-   }
-
-   public void setCode(String code)
-   {
-      this.code = code;
-   }
-
    @Override
    public int hashCode()
    {

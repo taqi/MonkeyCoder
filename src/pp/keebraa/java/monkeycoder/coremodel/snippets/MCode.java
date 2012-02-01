@@ -1,4 +1,4 @@
-package pp.keebraa.java.monkeycoder.coremodel.types;
+package pp.keebraa.java.monkeycoder.coremodel.snippets;
 
 public interface MCode
 {
