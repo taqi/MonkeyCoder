@@ -7,8 +7,8 @@ import static org.mockito.Mockito.when;
 
 import org.junit.Test;
 
-import pp.keebraa.java.monkeycoder.coremodel.snippets.CodeSnippet;
 import pp.keebraa.java.monkeycoder.coremodel.snippets.ParenthesisCodeSnippet;
+import pp.keebraa.java.monkeycoder.coremodel.snippets.expressions.ExpressionSnippet;
 
 public class ParenthesisCodeSnippetTest
 {
@@ -25,7 +25,7 @@ public class ParenthesisCodeSnippetTest
    @Test
    public void getCodeWithOneSnippet()
    {
-	CodeSnippet innerSnippet = mock(CodeSnippet.class);
+	ExpressionSnippet innerSnippet = mock(ExpressionSnippet.class);
 	when(innerSnippet.getCode()).thenReturn("a = b");
 	String expectedCode = "(a = b)";
 	ParenthesisCodeSnippet snippet = new ParenthesisCodeSnippet();
@@ -38,11 +38,11 @@ public class ParenthesisCodeSnippetTest
    @Test
    public void getCodeWithFewSnippets()
    {
-	CodeSnippet innerSnippet1 = mock(CodeSnippet.class);
+	ExpressionSnippet innerSnippet1 = mock(ExpressionSnippet.class);
 	when(innerSnippet1.getCode()).thenReturn("a = b");
-	CodeSnippet innerSnippet2 = mock(CodeSnippet.class);
+	ExpressionSnippet innerSnippet2 = mock(ExpressionSnippet.class);
 	when(innerSnippet2.getCode()).thenReturn("b = c");
-	CodeSnippet innerSnippet3 = mock(CodeSnippet.class);
+	ExpressionSnippet innerSnippet3 = mock(ExpressionSnippet.class);
 	when(innerSnippet3.getCode()).thenReturn("c = d");
 	String expectedCode = "(a = b, b = c, c = d)";
 	ParenthesisCodeSnippet snippet = new ParenthesisCodeSnippet();

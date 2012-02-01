@@ -6,22 +6,23 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import pp.keebraa.java.monkeycoder.coremodel.snippets.expressions.ExpressionSnippet;
 import pp.keebraa.java.monkeycoder.coremodel.types.MType;
 
 public class ParenthesisCodeSnippet implements ListCodeSnippet
 {
-   private List<CodeSnippet> codeSnippets;
+   private List<ExpressionSnippet> expressions;
 
    public ParenthesisCodeSnippet()
    {
-	this.codeSnippets = new ArrayList<CodeSnippet>();
+	this.expressions = new ArrayList<ExpressionSnippet>();
    }
 
    @Override
    public Set<MType> getUsedTypes()
    {
 	Set<MType> types = new HashSet<MType>();
-	for (CodeSnippet snippet : codeSnippets)
+	for (CodeSnippet snippet : expressions)
 	{
 	   types.addAll(snippet.getUsedTypes());
 	}
@@ -31,7 +32,12 @@ public class ParenthesisCodeSnippet implements ListCodeSnippet
    @Override
    public void addCodeSnippet(CodeSnippet codeSnippet)
    {
-	codeSnippets.add(codeSnippet);
+	if(!(codeSnippet instanceof ExpressionSnippet))
+	{
+	   throw new RuntimeException("for Parenthesis Code Snippet you must set only ExpressionSnippets");
+	}
+	ExpressionSnippet snippet = (ExpressionSnippet) codeSnippet;
+	expressions.add(snippet);
    }
 
    @Override
@@ -39,7 +45,7 @@ public class ParenthesisCodeSnippet implements ListCodeSnippet
    {
 	StringBuilder builder = new StringBuilder();
 	builder.append("(");
-	Iterator<CodeSnippet> iterator = codeSnippets.iterator();
+	Iterator<ExpressionSnippet> iterator = expressions.iterator();
 	while (iterator.hasNext())
 	{
 	   builder.append(iterator.next().getCode());
@@ -53,6 +59,6 @@ public class ParenthesisCodeSnippet implements ListCodeSnippet
    @Override
    public List<CodeSnippet> getCodeSnippets()
    {
-	return codeSnippets;
+	return new ArrayList<CodeSnippet>(expressions);
    }
 }
