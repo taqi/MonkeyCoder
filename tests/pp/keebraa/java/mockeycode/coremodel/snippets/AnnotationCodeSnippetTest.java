@@ -15,7 +15,7 @@ public class AnnotationCodeSnippetTest
    @Test
    public void getCodeSimpleCase()
    {
-	String expectedCode = "@\nColumn\n";
+	String expectedCode = "@Column\n";
 	MAnnotation annotation = mock(MAnnotation.class);
 	when(annotation.getClassName()).thenReturn("Column");
 	AnnotationCodeSnippet snippet = new AnnotationCodeSnippet(annotation);
@@ -26,7 +26,7 @@ public class AnnotationCodeSnippetTest
    @Test
    public void getCodeWithSomeValues()
    {
-	String expectedCode = "@\nColumn(a = b)\n";
+	String expectedCode = "@Column(a = b)\n";
 	MAnnotation annotation = mock(MAnnotation.class);
 	ParenthesisCodeSnippet parenthesisSnippet = mock(ParenthesisCodeSnippet.class);
 	when(annotation.getClassName()).thenReturn("Column");

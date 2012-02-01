@@ -27,13 +27,8 @@ public class AnnotationCodeSnippet implements ListCodeSnippet
 
    private void generateBasicClause(StringBuilder builder)
    {
-	builder.append("@\n");
+	builder.append("@");
 	builder.append(annotation.getClassName());
-   }
-
-   
-   private void generateValues(StringBuilder builder)
-   {
    }
    
    @Override
