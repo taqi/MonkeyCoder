@@ -31,6 +31,11 @@ public class AnnotationCodeSnippet implements ListCodeSnippet
 	builder.append(annotation.getClassName());
    }
 
+   
+   private void generateValues(StringBuilder builder)
+   {
+   }
+   
    @Override
    public String getCode()
    {
