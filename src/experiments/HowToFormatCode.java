@@ -1,3 +1,4 @@
+package experiments;
 import org.eclipse.jdt.core.ToolFactory;
 import org.eclipse.jdt.core.formatter.CodeFormatter;
 import org.eclipse.jface.text.BadLocationException;
@@ -6,7 +7,7 @@ import org.eclipse.jface.text.IDocument;
 import org.eclipse.text.edits.MalformedTreeException;
 import org.eclipse.text.edits.TextEdit;
 
-public class Main
+public class HowToFormatCode
 {
    public static void main(String[] args) throws MalformedTreeException, BadLocationException
    {
