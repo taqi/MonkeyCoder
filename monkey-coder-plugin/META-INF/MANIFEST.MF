@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Monkey-coder-plugin
+Bundle-SymbolicName: monkey-coder-plugin
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: pp.keebraa.java.monkeycoder.plugin.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
