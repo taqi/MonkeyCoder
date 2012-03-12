@@ -1,5 +1,5 @@
-bin
-target
-tmp
-.sonar
+monkeycoder-engine/bin
+monkeycoder-engine/target
+monkeycoder-engine/tmp
+monkeycoder-engine/.sonar
 **/*.class

@@ -12,8 +12,14 @@ public class HowToFormatCode
    public static void main(String[] args) throws MalformedTreeException, BadLocationException
    {
 	CodeFormatter formatter = ToolFactory.createCodeFormatter(null);
-	String code = "public class AAA { public void main(){}}";
-	TextEdit textEdit = formatter.format(CodeFormatter.K_COMPILATION_UNIT, code, 0, code.length(), 0, null);
+	String code = "import java.lang.Integer; @Deprecated public class AAA { @Deprecated public void main(){}}";
+	TextEdit textEdit = null;
+	for(int i = 0; i < Integer.MAX_VALUE; i++)
+	{
+	   textEdit = formatter.format(CodeFormatter.K_UNKNOWN, code, 0, code.length(), 0, null);
+	   if(textEdit != null)
+		System.out.println("with "+i);
+	}
 	IDocument doc = new Document();
 	doc.set(code);
 	textEdit.apply(doc);
