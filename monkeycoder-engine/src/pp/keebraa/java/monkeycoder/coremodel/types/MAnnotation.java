@@ -30,9 +30,9 @@ public class MAnnotation extends MType implements MSyntax
 	this.values = values;
    }
    
-   public void addValue(MVariable value)
+   public void addValue(String key, MVariable value)
    {
-	values.put(value.getType().getClassName(), value);
+	values.put(key, value);
    }
    
    @Override

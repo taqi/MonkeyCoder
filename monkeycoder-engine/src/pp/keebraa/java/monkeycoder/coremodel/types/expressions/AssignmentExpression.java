@@ -9,7 +9,13 @@ public class AssignmentExpression extends ExpressionSyntax
 {
    private MVariable leftPart;
    private ExpressionSyntax rightPart;
-   
+
+   public AssignmentExpression(MVariable leftPart, ExpressionSyntax rightPart)
+   {
+	this.leftPart = leftPart;
+	this.rightPart = rightPart;
+   }
+
    @Override
    public ExpressionSnippet getCodeSnippet()
    {
@@ -20,7 +26,7 @@ public class AssignmentExpression extends ExpressionSyntax
    {
 	return leftPart.getCodeSnippet();
    }
-   
+
    public ExpressionSnippet getRightPart()
    {
 	return rightPart.getCodeSnippet();

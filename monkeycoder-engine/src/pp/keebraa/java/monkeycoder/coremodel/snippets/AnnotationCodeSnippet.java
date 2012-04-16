@@ -18,13 +18,9 @@ public class AnnotationCodeSnippet implements ListCodeSnippet
    public AnnotationCodeSnippet(MAnnotation annotation)
    {
 	this.annotation = annotation;
+	
    }
    
-   public void setParenthesisBlock(ParenthesisCodeSnippet block)
-   {
-	this.parenthesisBlock = block;
-   }
-
    private void generateBasicClause(StringBuilder builder)
    {
 	builder.append("@");
